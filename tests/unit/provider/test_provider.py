@@ -216,11 +216,11 @@ class TestProvider(unittest.TestCase):
     def test_passed_in_values_beat_env_vars(self):
         self.environ['AWS_ACCESS_KEY_ID'] = 'env_access_key'
         self.environ['AWS_SECRET_ACCESS_KEY'] = 'env_secret_key'
-        self.environ['AWS_SECURITY_TOKEN'] = 'env_security_token'
+        self.environ['AWS_SESSION_TOKEN'] = 'env_session_token'
         p = provider.Provider('aws', 'access_key', 'secret_key')
         self.assertEqual(p.access_key, 'access_key')
         self.assertEqual(p.secret_key, 'secret_key')
-        self.assertEqual(p.security_token, None)
+        self.assertEqual(p.security_token, 'env_session_token')
 
     def test_env_vars_beat_shared_creds_values(self):
         self.environ['AWS_ACCESS_KEY_ID'] = 'env_access_key'
